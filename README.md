@@ -1,3 +1,6 @@
+![License](https://img.shields.io/github/license/spothana/dsa_guide)
+![Stars](https://img.shields.io/github/stars/spothana/dsa_guide)
+
 # DSA Guide — C Implementation
 
 A comprehensive reference implementation of **25 data structures** and
