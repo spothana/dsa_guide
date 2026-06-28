@@ -1,5 +1,5 @@
 /*
- * main.c — DSA Guide demo runner
+ * main.c - DSA Guide demo runner
  *
  * Exercises every data structure and algorithm with labelled output
  * so students can trace what each operation does and why.
@@ -12,13 +12,13 @@
 #include <string.h>
 
 #define SECTION(name) \
-    printf("\n╔══════════════════════════════════════════════════╗\n"); \
-    printf("║  %-48s║\n", name); \
-    printf("╚══════════════════════════════════════════════════╝\n");
+    printf("\n????????????????????????????????????????????????????\n"); \
+    printf("?  %-48s?\n", name); \
+    printf("????????????????????????????????????????????????????\n");
 
-#define DEMO(name) printf("\n── %s ──\n", name);
+#define DEMO(name) printf("\n?? %s ??\n", name);
 
-/* ── helpers ──────────────────────────────────────────────────────────────── */
+/* ?? helpers ???????????????????????????????????????????????????????????????? */
 static void print_int_arr(const char *label, const int *arr, int n) {
     printf("%s: [", label);
     for (int i=0;i<n;i++) printf("%d%s", arr[i], i<n-1?", ":"");
@@ -27,18 +27,18 @@ static void print_int_arr(const char *label, const int *arr, int n) {
 
 static void visit_rbt(RBNode *n) { printf("  %d(%s)\n", n->key, n->color==RB_RED?"R":"B"); }
 static void visit_range(int k, int v) { printf("  range hit: key=%d val=%d\n", k, v); }
-static void visit_auto(const char *key, int val) { printf("  autocomplete: %s → %d\n", key, val); }
+static void visit_auto(const char *key, int val) { printf("  autocomplete: %s ? %d\n", key, val); }
 static void visit_kd(KDNode *n) { printf("  in-range: (%.1f, %.1f) val=%d\n", n->point[0], n->point[1], n->val); }
 static void visit_interval(ITreeNode *n) { printf("  overlap: [%d,%d]\n", n->lo, n->hi); }
 static void visit_rtree(int id, MBR mbr) { printf("  rtree hit: id=%d MBR=(%.1f,%.1f)-(%.1f,%.1f)\n", id, mbr.x1,mbr.y1,mbr.x2,mbr.y2); }
 static void visit_btree(int k) { printf("  %d ", k); }
 
-/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ??????????????????????????????????????????????????????????????????????????? */
 int main(void) {
-    printf("DSA Guide — C Implementation Demo\n");
+    printf("DSA Guide - C Implementation Demo\n");
     printf("=========================================\n");
 
-    /* ── 1. ARRAY ─────────────────────────────────────────────────────────── */
+    /* ?? 1. ARRAY ??????????????????????????????????????????????????????????? */
     SECTION("1. Array / Buffer")
 
     DEMO("Binary search")
@@ -46,8 +46,8 @@ int main(void) {
     int sorted[] = {1,3,5,7,9,11,13,15,17,19};
     for (int i=0;i<10;i++) array_push(arr, sorted[i]);
     printf("Array: "); for(size_t i=0;i<arr->size;i++) printf("%d ",arr->data[i]); printf("\n");
-    printf("Binary search 11 → index %d (expect 5)\n", array_binary_search(arr, 11));
-    printf("Binary search  4 → index %d (expect -1)\n", array_binary_search(arr, 4));
+    printf("Binary search 11 ? index %d (expect 5)\n", array_binary_search(arr, 11));
+    printf("Binary search  4 ? index %d (expect -1)\n", array_binary_search(arr, 4));
 
     DEMO("Sliding window max (k=3)")
     int sw[] = {2,1,5,3,6,4,8,7};
@@ -70,7 +70,7 @@ int main(void) {
     array_destroy(arr); array_destroy(swa); array_destroy(result);
     array_destroy(pa);  array_destroy(prefix);
 
-    /* ── 2. LINKED LIST ───────────────────────────────────────────────────── */
+    /* ?? 2. LINKED LIST ????????????????????????????????????????????????????? */
     SECTION("2. Linked List")
 
     DEMO("Push/reversal/merge sort")
@@ -87,7 +87,7 @@ int main(void) {
     printf("Has cycle: %s (expect false)\n", ll_has_cycle(ll)?"true":"false");
     ll_destroy(ll);
 
-    /* ── 3. STACK ─────────────────────────────────────────────────────────── */
+    /* ?? 3. STACK ??????????????????????????????????????????????????????????? */
     SECTION("3. Stack")
 
     DEMO("Postfix expression eval")
@@ -99,11 +99,11 @@ int main(void) {
     printf("{[()]} balanced: %s\n", stack_balanced_brackets("{[()]}")?"yes":"no");
     printf("{[(])} balanced: %s\n", stack_balanced_brackets("{[(])}")?"yes":"no");
 
-    /* ── 4. QUEUE + DEQUE ─────────────────────────────────────────────────── */
+    /* ?? 4. QUEUE + DEQUE ??????????????????????????????????????????????????? */
     SECTION("4. Queue / Deque")
 
     DEMO("BFS on simple graph")
-    /* Graph: 0→1,2  1→3  2→3  3→4 */
+    /* Graph: 0?1,2  1?3  2?3  3?4 */
     int adj0[]={2,1,2}, adj1[]={1,3}, adj2[]={1,3}, adj3[]={1,4}, adj4[]={0};
     int *adj[]={(int*)adj0,(int*)adj1,(int*)adj2,(int*)adj3,(int*)adj4};
     int bfs_n;
@@ -117,7 +117,7 @@ int main(void) {
     print_int_arr("Window max", swmax, swlen);
     free(swmax);
 
-    /* ── 5. RING BUFFER ───────────────────────────────────────────────────── */
+    /* ?? 5. RING BUFFER ????????????????????????????????????????????????????? */
     SECTION("5. Ring Buffer (Lock-free SPSC)")
 
     RingBuffer *rb = rb_create(8);
@@ -128,21 +128,21 @@ int main(void) {
     printf("Size now: %zu\n", rb_size(rb));
     rb_destroy(rb);
 
-    /* ── 6. CIRCULAR LIST (LRU) ───────────────────────────────────────────── */
-    SECTION("6. Circular / Doubly-Linked List — LRU Cache")
+    /* ?? 6. CIRCULAR LIST (LRU) ????????????????????????????????????????????? */
+    SECTION("6. Circular / Doubly-Linked List - LRU Cache")
 
     CircularList *cl = clist_create();
     printf("LRU cache (max=4). Accessing: 1,2,3,4,1,5\n");
     int accesses[] = {1,2,3,4,1,5};
     for (int i=0;i<6;i++) {
         int evicted = clist_lru_access(cl, accesses[i], 4);
-        printf("  access(%d) → ", accesses[i]);
+        printf("  access(%d) ? ", accesses[i]);
         if (evicted != -1) printf("evicted %d  ", evicted);
         clist_print(cl);
     }
     clist_destroy(cl);
 
-    /* ── 7. RED-BLACK TREE ────────────────────────────────────────────────── */
+    /* ?? 7. RED-BLACK TREE ?????????????????????????????????????????????????? */
     SECTION("7. Red-Black Tree (CFS scheduler pattern)")
 
     RBTree *rbt = rbt_create();
@@ -157,7 +157,7 @@ int main(void) {
            rbt_minimum(rbt)->key, rbt_is_valid(rbt)?"yes":"NO!");
     rbt_destroy(rbt);
 
-    /* ── 8. B-TREE ────────────────────────────────────────────────────────── */
+    /* ?? 8. B-TREE ?????????????????????????????????????????????????????????? */
     SECTION("8. B-tree (filesystem/DB index)")
 
     BTree *bt = bt_create();
@@ -170,7 +170,7 @@ int main(void) {
     printf("After delete(15), search 15: %s\n", bt_search(bt,15)?"found":"not found");
     bt_destroy(bt);
 
-    /* ── 9. TRIE ──────────────────────────────────────────────────────────── */
+    /* ?? 9. TRIE ???????????????????????????????????????????????????????????? */
     SECTION("9. Trie / Radix Tree (IP routing LPM)")
 
     Trie *trie = trie_create();
@@ -189,7 +189,7 @@ int main(void) {
     trie_autocomplete(trie, "192.", visit_auto);
     trie_destroy(trie);
 
-    /* ── 10. SEGMENT TREE ─────────────────────────────────────────────────── */
+    /* ?? 10. SEGMENT TREE ??????????????????????????????????????????????????? */
     SECTION("10. Segment / Interval Tree")
 
     DEMO("Segment tree range sum + lazy update")
@@ -213,7 +213,7 @@ int main(void) {
     itree_overlap(it, 4, 10, visit_interval);
     itree_destroy(it);
 
-    /* ── 11. HEAP ─────────────────────────────────────────────────────────── */
+    /* ?? 11. HEAP ??????????????????????????????????????????????????????????? */
     SECTION("11. Heap / Priority Queue + Heapsort + Dijkstra")
 
     DEMO("Min-heap and heapsort")
@@ -240,10 +240,10 @@ int main(void) {
     int *dist = graph_dijkstra(g, 0);
     printf("Shortest from 0: ");
     for (int i=0;i<5;i++) printf("[%d]=%d ", i, dist[i]);
-    printf("\n(expect 0→0, 1→3, 2→1, 3→4, 4→7)\n");
+    printf("\n(expect 0?0, 1?3, 2?1, 3?4, 4?7)\n");
     free(dist); graph_destroy(g);
 
-    /* ── 12. HASH TABLE ───────────────────────────────────────────────────── */
+    /* ?? 12. HASH TABLE ????????????????????????????????????????????????????? */
     SECTION("12. Hash Table (chaining + open addressing)")
 
     HashTable *ht = ht_create(8);
@@ -254,7 +254,7 @@ int main(void) {
     printf("get(5) after delete = %d (expect -1)\n", ht_get(ht,5,&got)?got:-1);
     ht_destroy(ht);
 
-    DEMO("Cuckoo hash — O(1) worst-case lookup")
+    DEMO("Cuckoo hash - O(1) worst-case lookup")
     CuckooHash *ch = cuckoo_create(16);
     for (int i=0;i<8;i++) cuckoo_insert(ch, i, i*10);
     printf("cuckoo get(3) = %d (expect 30)\n", cuckoo_get(ch,3,&got)?got:-1);
@@ -262,8 +262,8 @@ int main(void) {
     printf("cuckoo get(3) after delete = %d\n", cuckoo_get(ch,3,&got)?got:-1);
     cuckoo_destroy(ch);
 
-    /* ── 13. GRAPH ────────────────────────────────────────────────────────── */
-    SECTION("13. Graph — BFS / DFS / Topo-sort")
+    /* ?? 13. GRAPH ?????????????????????????????????????????????????????????? */
+    SECTION("13. Graph - BFS / DFS / Topo-sort")
 
     Graph *g2 = graph_create(6, true);
     graph_add_edge(g2, 5, 2, 1); graph_add_edge(g2, 5, 0, 1);
@@ -278,8 +278,8 @@ int main(void) {
     printf("Has cycle: %s (expect false)\n", graph_has_cycle(g2)?"true":"false");
     graph_destroy(g2);
 
-    /* ── 14. DAG ──────────────────────────────────────────────────────────── */
-    SECTION("14. DAG — Critical Path")
+    /* ?? 14. DAG ???????????????????????????????????????????????????????????? */
+    SECTION("14. DAG - Critical Path")
 
     DAG *dag = dag_create(5);
     dag_add_edge(dag,0,1,3); dag_add_edge(dag,0,2,2);
@@ -294,7 +294,7 @@ int main(void) {
     print_int_arr("Kahn's topo order", tk, tn);
     free(cp); free(tk); dag_destroy(dag);
 
-    /* ── 15. UNION-FIND ───────────────────────────────────────────────────── */
+    /* ?? 15. UNION-FIND ????????????????????????????????????????????????????? */
     SECTION("15. Union-Find (DSU)")
 
     UnionFind *uf = uf_create(7);
@@ -308,7 +308,7 @@ int main(void) {
     printf("Components now: %zu (expect 2)\n", uf_num_components(uf));
     uf_destroy(uf);
 
-    /* ── 16. BLOOM FILTER ─────────────────────────────────────────────────── */
+    /* ?? 16. BLOOM FILTER ??????????????????????????????????????????????????? */
     SECTION("16. Bloom Filter")
 
     BloomFilter *bf = bloom_create(1000, 0.01);
@@ -316,13 +316,13 @@ int main(void) {
     bloom_add(bf, "192.168.1.1", 11);
     bloom_add(bf, "10.0.0.1", 8);
     printf("Test '192.168.1.1': %s (expect yes)\n",
-           bloom_test(bf,"192.168.1.1",11)?"yes — in set":"no");
+           bloom_test(bf,"192.168.1.1",11)?"yes - in set":"no");
     printf("Test '8.8.8.8':     %s\n",
-           bloom_test(bf,"8.8.8.8",7)?"possible hit (FP)":"no — definitely not in set");
+           bloom_test(bf,"8.8.8.8",7)?"possible hit (FP)":"no - definitely not in set");
     printf("Estimated FP rate: %.4f\n", bloom_fp_rate(bf));
     bloom_destroy(bf);
 
-    /* ── 17. SKIP LIST ────────────────────────────────────────────────────── */
+    /* ?? 17. SKIP LIST ?????????????????????????????????????????????????????? */
     SECTION("17. Skip List (Redis sorted set / RocksDB memtable)")
 
     SkipList *sl = sl_create();
@@ -334,7 +334,7 @@ int main(void) {
     printf("After delete(6), search: %s\n", sl_search(sl,6,&sv)?"found":"not found");
     sl_destroy(sl);
 
-    /* ── 18. COUNT-MIN + HYPERLOGLOG ─────────────────────────────────────── */
+    /* ?? 18. COUNT-MIN + HYPERLOGLOG ??????????????????????????????????????? */
     SECTION("18. Count-Min Sketch + HyperLogLog")
 
     DEMO("Count-Min: frequency estimation")
@@ -355,7 +355,7 @@ int main(void) {
            (unsigned long long)est, 100.0*((double)est-10000)/10000);
     hll_destroy(hll);
 
-    /* ── 19. k-d TREE ─────────────────────────────────────────────────────── */
+    /* ?? 19. k-d TREE ??????????????????????????????????????????????????????? */
     SECTION("19. k-d Tree (spatial nearest-neighbour)")
 
     KDTree *kd = kd_create();
@@ -368,7 +368,7 @@ int main(void) {
     kd_range_search(kd, 5.0, 5.0, 3.0, visit_kd);
     kd_destroy(kd);
 
-    /* ── 20. R-TREE ───────────────────────────────────────────────────────── */
+    /* ?? 20. R-TREE ????????????????????????????????????????????????????????? */
     SECTION("20. R-tree (bounding-box spatial index)")
 
     RTree *rt = rtree_create();
@@ -380,7 +380,7 @@ int main(void) {
     rtree_search(rt, 1.5,1.5,3.5,3.5, visit_rtree);
     rtree_destroy(rt);
 
-    /* ── 21. LSM TREE ─────────────────────────────────────────────────────── */
+    /* ?? 21. LSM TREE ??????????????????????????????????????????????????????? */
     SECTION("21. LSM Tree (RocksDB / write-optimised KV)")
 
     LSMTree *lsm = lsm_create();
@@ -394,7 +394,7 @@ int main(void) {
     printf("After compaction, get(5) = %s\n", lsm_get(lsm,5,&lv)?"found":"not found");
     lsm_destroy(lsm);
 
-    /* ── 22. BITMAP ───────────────────────────────────────────────────────── */
+    /* ?? 22. BITMAP ????????????????????????????????????????????????????????? */
     SECTION("22. Bitmap / Bitset (RT scheduler, CPU masks)")
 
     Bitmap *bm = bm_create(64);
@@ -407,7 +407,7 @@ int main(void) {
     printf("popcount: %zu (expect 5)\n", bm_popcount(bm));
     bm_destroy(bm);
 
-    /* ── 23. WAVELET TREE ─────────────────────────────────────────────────── */
+    /* ?? 23. WAVELET TREE ??????????????????????????????????????????????????? */
     SECTION("23. Wavelet Tree (rank/select/quantile)")
 
     int wseq[] = {3,1,4,1,5,9,2,6,5,3};
@@ -419,10 +419,129 @@ int main(void) {
            wt_quantile(wt,0,9,5));
     wt_destroy(wt);
 
-    printf("\n╔══════════════════════════════════════════════════╗\n");
-    printf("║  All demos complete.                             ║\n");
-    printf("║  Build with: mkdir build && cd build            ║\n");
-    printf("║              cmake .. && make && ./dsa_demo      ║\n");
-    printf("╚══════════════════════════════════════════════════╝\n");
+    /* ?? 24. BIT-OPERATION ALGORITHMS ?????????????????????????????????????? */
+    SECTION("24. Bit-Operation Algorithms")
+
+    DEMO("Fundamentals: field extraction and mutation")
+    uint32_t reg = 0b10110100u;           /* imagine a hardware register      */
+    bits_demo_print_u32("register",             reg);
+    bits_demo_print_u32("set bit 0",            bit_set(reg, 0));
+    bits_demo_print_u32("clear bit 2",          bit_clear(reg, 2));
+    bits_demo_print_u32("toggle bit 7",         bit_toggle(reg, 7));
+    printf("bit_field(reg, 2, 5)   = 0x%X  (bits 5..2, expect 0xD)\n",
+           bit_field(reg, 2, 5));
+    printf("bit_field_set(..., 4)  = 0x%X\n",
+           bit_field_set(reg, 2, 5, 4));
+
+    DEMO("Arithmetic without +/-/*//")
+    printf("bit_add(17, 25)        = %d  (expect 42)\n",  bit_add(17, 25));
+    printf("bit_add(-10, 4)        = %d  (expect -6)\n",  bit_add(-10, 4));
+    printf("bit_sub(100, 58)       = %d  (expect 42)\n",  bit_sub(100, 58));
+    printf("bit_mul(6, 7)          = %d  (expect 42)\n",  bit_mul(6, 7));
+    printf("bit_mul(-3, 14)        = %d  (expect -42)\n", bit_mul(-3, 14));
+    printf("bit_div(100, 7)        = %u  (expect 14)\n",  bit_div(100, 7));
+    printf("bit_abs(-42)           = %d  (expect 42)\n",  bit_abs(-42));
+
+    DEMO("Counting: popcount, parity, CTZ, CLZ, floor_log2")
+    uint32_t bv = 0b10110110u;
+    printf("value                  = 0b10110110\n");
+    printf("bit_popcount32         = %d  (expect 5)\n",  bit_popcount32(bv));
+    printf("bit_parity             = %d  (expect 1 - odd)\n", bit_parity(bv));
+    printf("bit_ctz (lowest set)   = %d  (expect 1)\n", bit_ctz(bv));
+    printf("bit_clz (leading zeros)= %d  (expect 24)\n", bit_clz(bv));
+    printf("bit_floor_log2         = %d  (expect 7)\n",  bit_floor_log2(bv));
+
+    DEMO("Rounding: next/prev power-of-two, alignment")
+    uint32_t sizes[] = {1, 5, 8, 9, 255, 256, 1000};
+    for (int i = 0; i < 7; i++)
+        printf("next_pow2(%4u) = %4u   prev_pow2(%4u) = %4u\n",
+               sizes[i], bit_next_pow2(sizes[i]),
+               sizes[i], bit_prev_pow2(sizes[i]));
+    printf("align_up(13, 8)        = %u  (expect 16)\n", bit_align_up(13, 8));
+    printf("align_down(13, 8)      = %u  (expect 8)\n",  bit_align_down(13, 8));
+    printf("is_aligned(16, 8)      = %s\n", bit_is_aligned(16,8)?"yes":"no");
+    printf("is_aligned(13, 8)      = %s\n", bit_is_aligned(13,8)?"yes":"no");
+
+    DEMO("Isolation: LSB, MSB, bit_reverse")
+    uint32_t w = 0b10110100u;
+    bits_demo_print_u32("original",              w);
+    bits_demo_print_u32("isolate LSB",           bit_lsb(w));
+    bits_demo_print_u32("clear LSB",             bit_clear_lsb(w));
+    bits_demo_print_u32("isolate MSB",           bit_msb(w));
+    bits_demo_print_u32("bit_reverse",           bit_reverse(w));
+    printf("bit_reverse(bit_reverse(x)) == x: %s\n",
+           bit_reverse(bit_reverse(w)) == w ? "yes" : "NO");
+
+    DEMO("Branchless predicates: is_pow2, same_sign, min, max, xor_swap")
+    printf("is_pow2(64)            = %s\n", bit_is_pow2(64)?"yes":"no");
+    printf("is_pow2(63)            = %s\n", bit_is_pow2(63)?"yes":"no");
+    printf("is_pow2(0)             = %s\n", bit_is_pow2(0)?"yes":"no");
+    printf("same_sign(-1, -99)     = %s\n", bit_same_sign(-1,-99)?"yes":"no");
+    printf("same_sign(-1,  99)     = %s\n", bit_same_sign(-1, 99)?"yes":"no");
+    printf("bit_min(17, 42)        = %d  (expect 17)\n", bit_min(17, 42));
+    printf("bit_max(17, 42)        = %d  (expect 42)\n", bit_max(17, 42));
+    int32_t p = 7, q = 13;
+    bit_xor_swap(&p, &q);
+    printf("xor_swap(7,13)         ? p=%d q=%d  (expect 13 7)\n", p, q);
+
+    DEMO("Integer coding: Gray code, zigzag, bswap, Morton")
+    for (uint32_t n = 0; n < 8; n++) {
+        uint32_t g = bit_to_gray(n);
+        printf("  binary=%u  gray=0b%u%u%u  decode=%u\n",
+               n, (g>>2)&1, (g>>1)&1, g&1, bit_from_gray(g));
+    }
+    printf("zigzag_encode(-3)      = %u  (expect 5)\n",  bit_zigzag_encode(-3));
+    printf("zigzag_decode(5)       = %d  (expect -3)\n", bit_zigzag_decode(5));
+    printf("bswap32(0x11223344)    = 0x%08X  (expect 0x44332211)\n",
+           bit_bswap32(0x11223344u));
+    uint32_t morton = bit_morton_encode(3, 5);   /* x=3=0b011, y=5=0b101 */
+    uint16_t mx, my;
+    bit_morton_decode(morton, &mx, &my);
+    printf("morton_encode(3,5)     = 0x%X  decode ? x=%u y=%u\n",
+           morton, mx, my);
+
+    DEMO("Classic puzzles: single number, missing number, two singles")
+    int32_t arr1[] = {4, 1, 2, 1, 2};
+    printf("single_number([4,1,2,1,2])   = %d  (expect 4)\n",
+           bit_single_number(arr1, 5));
+
+    int32_t arr2[] = {0, 1, 3, 4};          /* missing 2 from [0..4] */
+    printf("missing_number([0,1,3,4])    = %d  (expect 2)\n",
+           bit_missing_number(arr2, 4));
+
+    int32_t arr3[] = {1, 2, 1, 3, 2, 5};    /* singles are 3 and 5  */
+    int32_t sa, sb;
+    bit_two_singles(arr3, 6, &sa, &sb);
+    printf("two_singles([1,2,1,3,2,5])   = %d and %d  (expect 3 and 5)\n",
+           sa, sb);
+
+    DEMO("Subset enumeration (bitmask = 0b0111, items {0,1,2})")
+    {
+        int subset_count = 0;
+        void count_and_print(uint32_t s, void *ctx) {
+            (void)ctx;
+            printf("  subset 0b%u%u%u\n", (s>>2)&1, (s>>1)&1, s&1);
+            subset_count++;   /* note: nested fn for demo only; use closure in prod */
+        }
+        bit_each_subset(0b0111u, count_and_print, NULL);
+        printf("total subsets = %d  (expect 7 = 2^3 - 1)\n", subset_count);
+    }
+
+    DEMO("Packed byte ops: has_zero_byte, byte_eq_mask")
+    uint32_t no_zero  = 0x41424344u;   /* "ABCD" */
+    uint32_t has_zero = 0x41004344u;   /* "A\0CD" */
+    printf("has_zero_byte(0x41424344) = %s  (expect no)\n",
+           bit_has_zero_byte(no_zero) ? "yes" : "no");
+    printf("has_zero_byte(0x41004344) = %s  (expect yes)\n",
+           bit_has_zero_byte(has_zero) ? "yes" : "no");
+    uint32_t eq_mask = bit_byte_eq_mask(0x41424344u, 0x41004399u);
+    printf("byte_eq_mask(ABCD, A?C?) = 0x%08X  (bytes 0,2 match ? expect 0x00FF00FF)\n",
+           eq_mask);
+
+    printf("\n????????????????????????????????????????????????????\n");
+    printf("?  All demos complete.                             ?\n");
+    printf("?  Build with: mkdir build && cd build            ?\n");
+    printf("?              cmake .. && make && ./dsa_demo      ?\n");
+    printf("????????????????????????????????????????????????????\n");
     return 0;
 }

@@ -18,6 +18,7 @@ file(GLOB_RECURSE DSA_SOURCES
     src/probabilistic/*.c
     src/spatial/*.c
     src/specialized/*.c
+    src/bits/*.c
 )
 
 # ── Shared library (all DS implementations) ──────────────────────────────────

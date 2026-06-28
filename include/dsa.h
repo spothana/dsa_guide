@@ -54,3 +54,6 @@
 #include "specialized/lsm_tree.h"
 #include "specialized/bitmap.h"
 #include "specialized/wavelet_tree.h"
+
+/* ── Bits ───────────────────────────────────────────────────────────────── */
+#include "bits/bits.h"
